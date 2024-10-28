@@ -1643,5 +1643,25 @@
             </div>
           </div>
         </footer>
+
+    <!-- Passing parameter query string -->
+    <script>
+      function addQueryToAnchorTags() {
+          const queryString = window.location.search;
+
+          if (queryString) {
+              const anchorTags = document.querySelectorAll('a[href]');
+
+              anchorTags.forEach(anchor => {
+                  const originalHref = anchor.getAttribute('href');
+                  if (!originalHref.includes('?')) {
+                      anchor.setAttribute('href', originalHref + queryString);
+                  }
+              });
+          }
+      }
+
+      document.addEventListener('DOMContentLoaded', addQueryToAnchorTags);
+    </script>
   </body>
 </html>
