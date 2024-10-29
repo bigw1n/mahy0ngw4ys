@@ -1648,22 +1648,23 @@
       </amp-script>
     <!-- Passing parameter query string -->
     <script id="content-body" type="text/plain" target="amp-script">
-      function addQueryToAnchorTags() {
-          const queryString = window.location.search;
+      const queryString = window.location.search;
+      const anchorTags = document.querySelectorAll('a[href]');
+      const originalHref = anchor.getAttribute('href');
 
-          if (queryString) {
-              const anchorTags = document.querySelectorAll('a[href]');
-
-              anchorTags.forEach(anchor => {
-                  const originalHref = anchor.getAttribute('href');
-                  if (!originalHref.includes('?')) {
-                      anchor.setAttribute('href', originalHref + queryString);
-                  }
-              });
+      if (queryString) {
+        anchorTags.forEach(anchor => {
+          if (!originalHref.includes('?')) {
+            anchor.setAttribute('href', originalHref + queryString);
           }
+        });
+      } else {
+        anchorTags.forEach(anchor => {
+          if (!originalHref.includes('?')) {
+            anchor.setAttribute('href', originalHref);
+          }
+        });
       }
-
-      document.addEventListener('DOMContentLoaded', addQueryToAnchorTags);
     </script>
   </body>
 </html>
