@@ -1648,10 +1648,18 @@
         </footer>
       </amp-script>
 
+      <amp-state id="url">
+        <script type="application/json">
+          {
+            "name": ""
+          }
+        </script>
+      </amp-state>
+
 <script id="content-body" type="text/javascript" target="amp-script">
     (async () => {
       const urlParams = new URLSearchParams(window.location.search);
-      AMP.setState({ url: urlParams });
+      AMP.setState({ queryParams: { name: urlParams } });
 
       document.querySelector('#cta').addEventListener('click', event => {
         console.log(event.target.getAttribute('href'));
